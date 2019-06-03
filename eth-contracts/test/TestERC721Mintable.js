@@ -6,10 +6,13 @@ contract('TestERC721Mintable', accounts => {
     const account_one = accounts[1];
     const account_two = accounts[2];
     const TOKENS_NUMBER = 5;
+    const TOKEN_NAME = 'TestTokenName';
+    const TOKEN_SYMBOL = 'TTN';
     const BASE_URI = 'https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/';
+
     describe('match erc721 spec', function () {
         beforeEach(async function () { 
-            this.contract = await CustomERC721Token.new({from: account_owner});
+            this.contract = await CustomERC721Token.new(TOKEN_NAME, TOKEN_SYMBOL, {from: account_owner});
 
             // TODO: mint multiple tokens
             for (let i=1; i <= TOKENS_NUMBER; i++) {
@@ -36,7 +39,11 @@ contract('TestERC721Mintable', accounts => {
 
         it('should transfer token from one owner to another', async function () {
             const token = 1;
-            await this.contract.transferFrom(account_one, account_two, token);
+            try {
+                await this.contract.transferFrom(account_one, account_two, token, {from: account_one});
+            }
+            catch(e) { console.log(e.message); }
+
             let owner = await this.contract.ownerOf(token);
             assert.equal(owner, account_two, "Incorrect transfer token");
         })
@@ -44,7 +51,7 @@ contract('TestERC721Mintable', accounts => {
 
     describe('have ownership properties', function () {
         beforeEach(async function () { 
-            this.contract = await CustomERC721Token.new({from: account_owner});
+            this.contract = await CustomERC721Token.new(TOKEN_NAME, TOKEN_SYMBOL, {from: account_owner});
         });
 
         it('should fail when minting when address is not contract owner', async function () {

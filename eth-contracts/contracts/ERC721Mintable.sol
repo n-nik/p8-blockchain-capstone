@@ -571,12 +571,8 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
 //      -calls the superclass mint and setTokenURI functions
 
 
-contract CustomERC721Token is ERC721Metadata{
-    string private _name = "CustomTokenName";
-    string private _symbol = "CTN";
-    string private _baseTokenCustomURI = "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/";
-
-    constructor () ERC721Metadata(_name, _symbol, _baseTokenCustomURI) public {
+contract CustomERC721Token is ERC721Metadata {
+    constructor (string memory name, string memory symbol) ERC721Metadata(name, symbol, "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/")  public {
     }
 
     function mint(address to, uint256 tokenId) public onlyOwner returns (bool ){
