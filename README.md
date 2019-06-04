@@ -38,7 +38,7 @@ Result:
 
 ## SolnSquareVerifier ABI
 
-SolnSquareVerifier Contract ABI place  [here](https://github.com/n-nik/p8-blockchain-capstone/eth-contracts/build/contracts/SolnSquareVerifier.json)
+SolnSquareVerifier Contract ABI place  [here](https://github.com/n-nik/p8-blockchain-capstone/blob/master/eth-contracts/build/contracts/SolnSquareVerifier.json)
 
 
 Tokens minted with [myetherwallet tool](https://www.myetherwallet.com/interface/interact-with-contract)
