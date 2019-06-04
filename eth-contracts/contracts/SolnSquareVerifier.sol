@@ -26,18 +26,18 @@ contract SolnSquareVerifier is CustomERC721Token {
     mapping(bytes32 => Solution) private solutionsSubmitted;
 
     // TODO Create an event to emit when a solution is added
-    event solutionAdded(bytes32 solutionKey, address solutionAddress);
+    event SolutionAdded(bytes32 solutionKey, address solutionAddress);
 
 
     // TODO Create a function to add the solutions to the array and emit the event
     function addSolution(uint[2] memory a, uint[2][2] memory b, uint[2] memory c, uint[2] memory input) public {
         bytes32 key = keccak256(abi.encodePacked(a, b, c, input));
 
-        require(solutionsSubmitted[key].index > 0, "Solution already exsits");
+        require(solutionsSubmitted[key].index == 0, "Solution already exsits");
         solutionsSubmitted[key] = Solution({index: solutionCounter, senderAddress: msg.sender});
         solutionCounter += 1;
 
-        emit solutionAdded(key, msg.sender);
+        emit SolutionAdded(key, msg.sender);
     }
 
     // TODO Create a function to mint new NFT only after the solution has been verified

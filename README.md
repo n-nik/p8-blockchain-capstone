@@ -1,6 +1,22 @@
 # Udacity Blockchain Capstone
 
-The capstone will build upon the knowledge you have gained in the course in order to build a decentralized housing product. 
+The capstone is a decentralized housing product. 
+
+## Launch Ganache:
+Run this command in separate terminal window
+
+`npx ganache-cli -m "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat"`
+
+## Run truffle tests:
+
+`cd eth-contracts`
+
+`npx truffle test ./test/TestERC721Mintable.js`
+
+`npx truffle test ./test/TestSquareVerifier.js`
+
+`npx truffle test ./test/TestSolnSquareVerifier.js`
+
 
 # Project Resources
 
